@@ -2,12 +2,14 @@
 
 import { useActionState } from 'react';
 import { loginAction } from './actions';
+import QRCode from 'react-qr-code';
 
 export default function LoginPage() {
   const [state, formAction, isPending] = useActionState(loginAction, { error: '' } as any);
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm">
+    <div className="space-y-6 w-full">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 shadow-sm">
       <form action={formAction} className="space-y-6">
         <div>
           <label className="block text-sm font-medium mb-1.5" htmlFor="email">Email address</label>
@@ -49,6 +51,15 @@ export default function LoginPage() {
           {isPending ? 'Signing in...' : 'Sign in'}
         </button>
       </form>
+      </div>
+
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm flex flex-col items-center text-center">
+        <h3 className="text-sm font-semibold mb-3">Download Client App</h3>
+        <div className="bg-white p-2 rounded-lg border border-slate-200 shadow-sm inline-block">
+          <QRCode value="https://drive.google.com/file/d/1zMyvv2bhrRuNTqKZOSYstky1pQ6iztz8/view?usp=sharing" size={120} />
+        </div>
+        <p className="text-xs text-slate-500 mt-3">Scan this code to install the testing app on your device.</p>
+      </div>
     </div>
   );
 }

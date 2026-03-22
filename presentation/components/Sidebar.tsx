@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { logoutAction } from '@/app/(auth)/login/actions';
+import QRCode from 'react-qr-code';
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -40,6 +41,14 @@ export default function Sidebar() {
           );
         })}
       </nav>
+
+      <div className="p-4 mx-4 mb-4 bg-indigo-50 dark:bg-slate-800 rounded-xl flex flex-col items-center text-center border border-indigo-100 dark:border-slate-700">
+        <h3 className="text-xs font-semibold mb-2 text-indigo-900 dark:text-indigo-200 uppercase tracking-wider">Client App</h3>
+        <div className="bg-white p-1.5 rounded-lg shadow-sm inline-block mb-2">
+          <QRCode value="https://drive.google.com/file/d/1zMyvv2bhrRuNTqKZOSYstky1pQ6iztz8/view?usp=sharing" size={90} />
+        </div>
+        <p className="text-[10px] text-indigo-700/80 dark:text-indigo-300 font-medium">Scan to download & test</p>
+      </div>
 
       <div className="p-4 border-t border-slate-200 dark:border-slate-800">
         <div className="flex items-center gap-3">
