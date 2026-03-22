@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { logoutAction } from '@/app/(auth)/login/actions';
 import QRCode from 'react-qr-code';
+import { Github, Globe, ExternalLink, LayoutDashboard, Server, Smartphone } from 'lucide-react';
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -24,7 +25,8 @@ export default function Sidebar() {
         <p className="text-xs text-slate-500 mt-1 uppercase tracking-wider font-semibold">Admin Panel</p>
       </div>
 
-      <nav className="flex-1 px-4 space-y-2 mt-4">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden flex flex-col no-scrollbar">
+        <nav className="px-4 space-y-2 mt-4">
         {navItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
           return (
@@ -40,17 +42,49 @@ export default function Sidebar() {
             </Link>
           );
         })}
-      </nav>
+        </nav>
 
-      <div className="p-4 mx-4 mb-4 bg-indigo-50 dark:bg-slate-800 rounded-xl flex flex-col items-center text-center border border-indigo-100 dark:border-slate-700">
-        <h3 className="text-xs font-semibold mb-2 text-indigo-900 dark:text-indigo-200 uppercase tracking-wider">Client App</h3>
-        <div className="bg-white p-1.5 rounded-lg shadow-sm inline-block mb-2">
-          <QRCode value="https://drive.google.com/file/d/1zMyvv2bhrRuNTqKZOSYstky1pQ6iztz8/view?usp=sharing" size={90} />
+        <div className="mt-6 mb-4 px-4">
+          <p className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mb-2 ml-1">Project Resources</p>
+          <div className="space-y-1">
+            <div className="p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+              <p className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5"><LayoutDashboard size={12}/> Admin</p>
+              <div className="flex gap-2 mt-1.5 ml-4">
+                <a href="https://github.com/Dr-Legend/service-booking-admin" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Repo"><Github size={14} /></a>
+                <a href="https://service-booking-admin-three.vercel.app" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Vercel"><Globe size={14} /></a>
+                <a href="https://procreator-admin.vsaasify.com" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Production"><ExternalLink size={14} /></a>
+              </div>
+            </div>
+            
+            <div className="p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+              <p className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5"><Server size={12}/> Backend</p>
+              <div className="flex gap-2 mt-1.5 ml-4">
+                <a href="https://github.com/Dr-Legend/service-booking-core" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Repo"><Github size={14} /></a>
+                <a href="https://service-booking-core.dev-03a.workers.dev" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Live API"><ExternalLink size={14} /></a>
+              </div>
+            </div>
+
+            <div className="p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+              <p className="text-[11px] font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5"><Smartphone size={12}/> Client App</p>
+              <div className="flex gap-2 mt-1.5 ml-4">
+                <a href="https://github.com/Dr-Legend/service-booking-app" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-indigo-600 transition-colors" title="Repo"><Github size={14} /></a>
+              </div>
+            </div>
+          </div>
         </div>
-        <p className="text-[10px] text-indigo-700/80 dark:text-indigo-300 font-medium">Scan to download & test</p>
+
+        <div className="mt-auto pt-4 pb-2 px-4">
+          <div className="p-4 bg-indigo-50 dark:bg-slate-800/80 rounded-xl flex flex-col items-center text-center border border-indigo-100 dark:border-slate-700/50">
+            <h3 className="text-xs font-bold mb-2 text-indigo-900 dark:text-indigo-200 tracking-wide">CLIENT APP</h3>
+            <div className="bg-white p-1.5 rounded-lg shadow-sm inline-block mb-2">
+              <QRCode value="https://drive.google.com/file/d/1zMyvv2bhrRuNTqKZOSYstky1pQ6iztz8/view?usp=sharing" size={90} />
+            </div>
+            <p className="text-[10px] text-indigo-700/80 dark:text-indigo-300 font-medium leading-tight">Scan to download<br/>& test on mobile</p>
+          </div>
+        </div>
       </div>
 
-      <div className="p-4 border-t border-slate-200 dark:border-slate-800">
+      <div className="p-4 border-t border-slate-200 dark:border-slate-800 shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
             A
